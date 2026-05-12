@@ -1,0 +1,25 @@
+{
+  "name": "joule-credits",
+  "version": "0.1.0",
+  "description": "ERC-20 token minted by Chainlink oracle verification of OpenADR 3.0 DR curtailment events",
+  "license": "Apache-2.0",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:amoy": "hardhat run scripts/deploy.js --network amoy"
+  },
+  "devDependencies": {
+    "hardhat": "2.22.16",
+    "@nomicfoundation/hardhat-ethers": "3.0.8",
+    "@nomicfoundation/hardhat-chai-matchers": "2.0.8",
+    "@nomicfoundation/hardhat-network-helpers": "1.0.12",
+    "chai": "4.5.0",
+    "ethers": "6.13.5",
+    "mocha": "10.8.2"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "1.4.0",
+    "@openzeppelin/contracts": "5.1.0",
+    "dotenv": "16.4.7"
+  }
+}
