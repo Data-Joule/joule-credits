@@ -17,9 +17,13 @@ async function main() {
   const eventName = process.env.EVENT_NAME;
 
   if (!contractAddress || !eventName) {
-    console.error("Usage: CONTRACT=0x... EVENT_NAME=grid-tier2-... npx hardhat run scripts/requestVerification.js --network amoy");
+    console.error("Usage: CONTRACT=0x... EVENT_NAME=grid-tier2-... npx hardhat run scripts/requestVerification.js --network polygon");
     process.exit(1);
   }
+
+  const hre = require("hardhat");
+  const isMainnet = hre.network.name === "polygon";
+  const explorerBase = isMainnet ? "https://polygonscan.com" : "https://amoy.polygonscan.com";
 
   const [signer] = await ethers.getSigners();
   console.log("Signer:", signer.address);
@@ -34,7 +38,7 @@ async function main() {
   console.log("Requesting verification for:", eventName);
   const tx = await contract.requestVerification(eventName);
   console.log("Tx:", tx.hash);
-  console.log("Polygonscan: https://amoy.polygonscan.com/tx/" + tx.hash);
+  console.log("Polygonscan:", `${explorerBase}/tx/${tx.hash}`);
 
   const receipt = await tx.wait();
   console.log("✓ Confirmed in block", receipt.blockNumber);
