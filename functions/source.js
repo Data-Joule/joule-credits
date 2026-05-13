@@ -20,7 +20,7 @@ const eventName = args[0];
 if (!eventName || typeof eventName !== "string") {
   throw Error("args[0] (eventName) is required");
 }
-if (!eventName.startsWith("grid-tier")) {
+if (!/^grid-tier[1-4]-\d{10}$/.test(eventName)) {
   throw Error(`Invalid event name format: ${eventName}`);
 }
 
